@@ -31,43 +31,46 @@ param administratorLogin string = 'sql${replace(applicationName, '-', '')}root'
 @secure()
 param administratorPassword string = newGuid()
 
-resource sqlServer 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+resource sqlServer 'Microsoft.DBforPostgreSQL/flexibleServers@2021-06-01' = {
   name: serverName
   location: location
   tags: tags
   sku: {
 {{#databaseTierBasic}}
-    name: 'B_Gen5_1' 
+    name: 'Standard_B1ms'
+    tier: 'Burstable'
 {{/databaseTierBasic}}
 {{#databaseTierGeneralPurpose}}
-    name: 'GP_Gen5_2'
-{{/databaseTierGeneralPurpose}}    
+    name: 'Standard_D2ds_v4'
+    tier: 'GeneralPurpose'
+{{/databaseTierGeneralPurpose}}
   }
   properties: {
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorPassword
+    availabilityZone: 'ZONE_1'
     createMode: 'Default'
-    sslEnforcement: 'Enabled'
-    storageProfile: {
+    backup: {
       backupRetentionDays: 7
       geoRedundantBackup: 'Disabled'
-      storageAutogrow: 'Enabled'
-      storageMB: 5120
     }
-    version: '11'
+    storage: {
+      storageSizeGB: 32
+    }
+    version: '13'
   }
 }
 
-resource sqlDatabase 'Microsoft.DBforPostgreSQL/servers/databases@2017-12-01' = {
+resource sqlDatabase 'Microsoft.DBforPostgreSQL/flexibleServers/databases@2021-06-01' = {
   name: sqlDBName
   parent: sqlServer
   properties: {
-    charset: 'UTF8'
-    collation: 'English_United States.1252'
+    charset: 'utf8'
+    collation: 'en_US.utf8'
   }
 }
 
-resource symbolicname 'Microsoft.DBforPostgreSQL/servers/firewallRules@2017-12-01' = {
+resource symbolicname 'Microsoft.DBforPostgreSQL/flexibleServers/firewallRules@2021-06-01' = {
   name: 'AllowAzureServices'
   parent: sqlServer
   properties: {

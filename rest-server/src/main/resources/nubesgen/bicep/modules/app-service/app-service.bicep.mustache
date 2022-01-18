@@ -22,6 +22,7 @@ param resourceTags object
 
 var appServicePlanName = 'plan-${applicationName}-${instanceNumber}'
 {{#runtimeDocker}}
+
 var acrName = 'acr${take(replace(applicationName, '-', ''),40)}${instanceNumber}'
 
 // Azure Container Registry - https://docs.microsoft.com/en-us/azure/templates/microsoft.containerregistry/registries?tabs=bicep
@@ -58,7 +59,7 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2020-12-01' = {
 {{#applicationTierStandard}}
     tier: 'Standard'
     name: 'S1'
-{{/applicationTierStandard}}    
+{{/applicationTierStandard}}
   }
 }
 
@@ -106,21 +107,21 @@ resource appServiceApp 'Microsoft.Web/sites@2020-12-01' = {
   {{/runtimeNodejs}}
       alwaysOn: true
       ftpsState: 'FtpsOnly'
-{{/applicationTierFree}}      
+{{/applicationTierFree}}
       http20Enabled: true
       minTlsVersion: '1.2'
       appSettings: union(environmentVariables, [
-        { 
+        {
           name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
           value: false
         }
 {{#runtimeNodejs}}
         ,
-        { 
+        {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
           value: '1'
         },
-        { 
+        {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
           value: '~14'
         }
