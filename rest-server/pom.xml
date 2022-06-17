@@ -62,6 +62,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <image>
+                        <buildpacks>
+                            <buildpack>gcr.io/paketo-buildpacks/microsoft-openjdk</buildpack>
+                            <buildpack>paketo-buildpacks/java</buildpack>
+                        </buildpacks>
+                    </image>
                     <layers>
                         <enabled>true</enabled>
                     </layers>
