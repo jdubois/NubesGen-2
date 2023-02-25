@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NubesGen - going to production on Azure is only one `git push` away.</title>
+  <meta name="description" content="With NubesGen, going to production on Azure is only one `git push` away.">
+  <base href="/">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="./css/asciinema-player.css" rel="stylesheet">
+
+  <link href="./css/custom.css" rel="stylesheet">
+  <style>
+    .text-bg-info {
+
+      background-color: #b317b8;
+      color: #fff;
+
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid text-center text-bg-info">
+  ⭐ If you like NubesGen, give it a <a class="github-button" href="https://github.com/microsoft/nubesgen" data-icon="octicon-star" data-show-count="true" aria-label="Star microsoft/nubesgen on GitHub" tabindex="1">Star</a> on <a href="https://github.com/microsoft/nubesgen" tabindex="2">GitHub</a>. Thanks 🙏
+</div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">NubesGen</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.nubesgen.com/getting-started/terraform/">Getting Started</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://docs.nubesgen.com">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/microsoft/nubesgen">GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/microsoft/nubesgen/discussions">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h1 class="display-1">Kickstart your project on Azure <br><b>in minutes</b>!</h1>
+      <p>
+        Easily generate
+        <strong>Terraform</strong> and <strong>Bicep</strong> templates for your project.<br>Automate your infrastructure using GitOps best practices
+        with <strong>GitHub Actions</strong>.
+      </p>
+      <p>
+        NubesGen is an <strong>Open Source project</strong> and we are always looking for
+        <a href="https://github.com/microsoft/nubesgen">feedbacks and contributions</a>.
+      </p>
+    </div>
+    <div class="col-lg-8">
+      <script src="https://asciinema.org/a/14.js" id="asciicast-385945" async data-autoplay="true" data-rows="28" data-cols="110"></script>
+      <div class="container">
+        <div class="row text-center">
+          <b>Supported platforms</b>
+        </div>
+        <div class="row">
+          <div class="col-2">
+          </div>
+          <div class="col-1">
+            <img src="img/docker.svg" class="tech-logo" alt="Docker logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-netcore.svg" class="tech-logo" alt=".NET logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-java.svg" class="tech-logo" alt="Java logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-nodejs.svg" class="tech-logo" alt="Node.js logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-python.svg" class="tech-logo" alt="Python logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-spring-boot.svg" class="tech-logo" class="tech-logo" alt="Spring Boot logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-quarkus.svg" class="tech-logo" alt="Quarkus logo"/>
+          </div>
+          <div class="col-1">
+            <img src="img/platform-micronaut.svg" class="tech-logo" alt="Micronaut logo"/>
+          </div>
+          <div class="col-2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col text-bg-info">
+      <h2>Create a new infrastructure</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">Infrastructure as Code tool</div>
+    <div class="col-lg-10">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected value="TERRAFORM">Terraform</option>
+        <option value="BICEP">Bicep (preview)</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">Project name</div>
+    <div class="col-lg-10">
+        <input type="text" class="form-control" placeholder="demo">
+        <i>This name will be used to generate your resource names. All spaces will be replaced by dashes.</i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">Region</div>
+    <div class="col-lg-10">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option value="asia">Asia</option>
+        <option value="asiapacific">Asia Pacific</option>
+        <option value="australia">Australia</option>
+        <option value="australiacentral">Australia Central</option>
+        <option value="australiacentral2">Australia Central 2</option>
+        <option value="australiaeast">Australia East</option>
+        <option value="australiasoutheast">Australia Southeast</option>
+        <option value="brazil">Brazil</option>
+        <option value="brazilsouth">Brazil South</option>
+        <option value="brazilsoutheast">Brazil Southeast</option>
+        <option value="canada">Canada</option>
+        <option value="canadacentral">Canada Central</option>
+        <option value="canadaeast">Canada East</option>
+        <option value="centralindia">Central India</option>
+        <option value="centralus">Central US</option>
+        <option value="centraluseuap">Central US EUAP</option>
+        <option value="centralusstage">Central US (Stage)</option>
+        <option value="eastasia">East Asia</option>
+        <option value="eastasiastage">East Asia (Stage)</option>
+        <option value="eastus" selected>East US</option>
+        <option value="eastus2">East US 2</option>
+        <option value="eastus2euap">East US 2 EUAP</option>
+        <option value="eastus2stage">East US 2 (Stage)</option>
+        <option value="eastusstage">East US (Stage)</option>
+        <option value="eastusstg">East US STG</option>
+        <option value="europe">Europe</option>
+        <option value="france">France</option>
+        <option value="francecentral">France Central</option>
+        <option value="francesouth">France South</option>
+        <option value="germany">Germany</option>
+        <option value="germanynorth">Germany North</option>
+        <option value="germanywestcentral">Germany West Central</option>
+        <option value="global">Global</option>
+        <option value="india">India</option>
+        <option value="japan">Japan</option>
+        <option value="japaneast">Japan East</option>
+        <option value="japanwest">Japan West</option>
+        <option value="jioindiacentral">Jio India Central</option>
+        <option value="jioindiawest">Jio India West</option>
+        <option value="korea">Korea</option>
+        <option value="koreacentral">Korea Central</option>
+        <option value="koreasouth">Korea South</option>
+        <option value="northcentralus">North Central US</option>
+        <option value="northcentralusstage">North Central US (Stage)</option>
+        <option value="northeurope">North Europe</option>
+        <option value="norway">Norway</option>
+        <option value="norwayeast">Norway East</option>
+        <option value="norwaywest">Norway West</option>
+        <option value="qatarcentral">Qatar Central</option>
+        <option value="singapore">Singapore</option>
+        <option value="southafrica">South Africa</option>
+        <option value="southafricanorth">South Africa North</option>
+        <option value="southafricawest">South Africa West</option>
+        <option value="southcentralus">South Central US</option>
+        <option value="southcentralusstage">South Central US (Stage)</option>
+        <option value="southeastasia">Southeast Asia</option>
+        <option value="southeastasiastage">Southeast Asia (Stage)</option>
+        <option value="southindia">South India</option>
+        <option value="swedencentral">Sweden Central</option>
+        <option value="switzerland">Switzerland</option>
+        <option value="switzerlandnorth">Switzerland North</option>
+        <option value="switzerlandwest">Switzerland West</option>
+        <option value="uae">United Arab Emirates</option>
+        <option value="uaecentral">UAE Central</option>
+        <option value="uaenorth">UAE North</option>
+        <option value="uk">United Kingdom</option>
+        <option value="uksouth">UK South</option>
+        <option value="ukwest">UK West</option>
+        <option value="unitedstates">United States</option>
+        <option value="unitedstateseuap">United States EUAP</option>
+        <option value="westcentralus">West Central US</option>
+        <option value="westeurope">West Europe</option>
+        <option value="westindia">West India</option>
+        <option value="westus">West US</option>
+        <option value="westus2">West US 2</option>
+        <option value="westus2stage">West US 2 (Stage)</option>
+        <option value="westus3">West US 3</option>
+        <option value="westusstage">West US (Stage)</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
