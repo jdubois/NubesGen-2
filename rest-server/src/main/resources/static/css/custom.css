@@ -8,3 +8,26 @@
     width: 50px;
     height: 50px;
 }
+
+.nubesgen-header {
+    background-color: rgba(0, 153, 255, 0.25);
+}
+
+.nubesgen-title {
+    background-color: rgba(0, 153, 255, 0.25);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.nubesgen-navbar:hover {
+    background-color: rgba(0, 153, 255, 0.25);
+}
+
+.nubesgen-box {
+    background-color: rgba(192, 192, 192, 0.13);
+}
+
+.nubesgen-box:hover {
+    background-color: rgba(0, 153, 255, 0.45);
+}

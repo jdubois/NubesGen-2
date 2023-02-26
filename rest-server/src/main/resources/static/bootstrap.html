@@ -20,18 +20,10 @@
   <link href="./css/asciinema-player.css" rel="stylesheet">
 
   <link href="./css/custom.css" rel="stylesheet">
-  <style>
-    .text-bg-info {
-
-      background-color: #b317b8;
-      color: #fff;
-
-    }
-  </style>
 </head>
 <body>
 
-<div class="container-fluid text-center text-bg-info">
+<div class="container-fluid text-center nubesgen-header">
   ⭐ If you like NubesGen, give it a <a class="github-button" href="https://github.com/microsoft/nubesgen" data-icon="octicon-star" data-show-count="true" aria-label="Star microsoft/nubesgen on GitHub" tabindex="1">Star</a> on <a href="https://github.com/microsoft/nubesgen" tabindex="2">GitHub</a>. Thanks 🙏
 </div>
 
@@ -43,16 +35,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item nubesgen-navbar">
           <a class="nav-link" href="https://docs.nubesgen.com/getting-started/terraform/">Getting Started</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nubesgen-navbar">
           <a class="nav-link" href="https://docs.nubesgen.com">Documentation</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nubesgen-navbar">
           <a class="nav-link" href="https://github.com/microsoft/nubesgen">GitHub</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nubesgen-navbar">
           <a class="nav-link" href="https://github.com/microsoft/nubesgen/discussions">Help</a>
         </li>
       </ul>
@@ -116,20 +108,20 @@
 <br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col text-bg-info">
+    <div class="col nubesgen-title">
       <h2>Create a new infrastructure</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-2">Infrastructure as Code tool</div>
     <div class="col-lg-10">
-      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
         <option selected value="TERRAFORM">Terraform</option>
         <option value="BICEP">Bicep (preview)</option>
       </select>
     </div>
   </div>
-  <div class="row">
+  <div class="row bg-light">
     <div class="col-lg-2">Project name</div>
     <div class="col-lg-10">
         <input type="text" class="form-control" placeholder="demo">
@@ -139,7 +131,7 @@
   <div class="row">
     <div class="col-lg-2">Region</div>
     <div class="col-lg-10">
-      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
         <option value="asia">Asia</option>
         <option value="asiapacific">Asia Pacific</option>
         <option value="australia">Australia</option>
@@ -219,12 +211,170 @@
         <option value="westus3">West US 3</option>
         <option value="westusstage">West US (Stage)</option>
       </select>
+      <i>To choose the right region, have a look at <a href="https://azure.microsoft.com/explore/global-infrastructure/geographies" target="_blank">Azure geographies</a></i>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-2"></div>
+  <div class="row bg-light">
+    <div class="col-lg-2">Application</div>
     <div class="col-lg-10">
-
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <b>Application type</b>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <img class="tech-logo" src="img/icon-app-services.svg" alt="Azure Container Apps logo"><br>
+            <strong>Container application</strong>
+            <p>
+              <i>Azure Container Apps</i><br>
+              Supports Docker.<br>
+              <b>Will be released soon!</b>
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <img class="tech-logo" src="img/icon-app-services.svg" alt="Azure App Service logo"><br>
+            <strong>Web application</strong>
+            <p>
+              <i>Azure App Service</i><br>
+              Supports Docker, Java (including Spring Boot, Quarkus, Micronaut), .NET, Node.js, Python applications.
+            </p>
+            <p>
+              Select your framework:
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <option value="DOCKER" selected>Docker with a Dockerfile</option>
+                <option value="JAVA">Java: generic build with Maven</option>
+                <option value="JAVA_GRADLE">Java: generic build with Gradle</option>
+                <option value="DOTNET">.NET</option>
+                <option value="NODEJS">JavaScript (Node.js)</option>
+                <option value="PYTHON">Python</option>
+                <option value="SPRING">Spring Boot: Java build with Maven</option>
+                <option value="SPRING_GRADLE">Spring Boot: Java build with Gradle</option>
+                <option value="DOCKER_SPRING">Spring Boot: Docker build with Maven</option>
+                <option value="QUARKUS">Quarkus: Java build with Maven</option>
+                <option value="QUARKUS_NATIVE">Quarkus: Docker build (native) with Maven</option>
+                <option value="MICRONAUT">Micronaut: Java build with Maven</option>
+                <option value="MICRONAUT_GRADLE">Micronaut: Java build with Gradle</option>
+                <option value="DOCKER_MICRONAUT">Micronaut: Docker build with Maven</option>
+                <option value="DOCKER_MICRONAUT_GRADLE">Micronaut: Docker build with Gradle</option>
+              </select>
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <img class="tech-logo" src="img/icon-functions.svg" alt="Azure Functions logo"><br>
+            <strong>Serverless Application</strong>
+            <p>
+              <i>Azure Functions</i><br>
+              Supports Java, Spring Boot, .NET, Node.js, Python functions.
+            </p>
+            <p>
+              Select your framework:
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <option value="JAVA">Java: generic build with Maven</option>
+                <option value="JAVA_GRADLE">Java: generic build with Gradle</option>
+                <option value="DOTNET">.NET</option>
+                <option value="NODEJS">JavaScript (Node.js)</option>
+                <option value="PYTHON">Python</option>
+                <option value="SPRING">Spring Boot: Java build with Maven</option>
+                <option value="SPRING_GRADLE">Spring Boot: Java build with Gradle</option>
+              </select>
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <img class="tech-logo" src="img/icon-spring-cloud.svg" alt="Azure Spring Apps logo"><br>
+            <strong>Spring Boot Application</strong>
+            <p>
+              <i>Azure Spring Apps</i><br>
+              Supports Spring Boot.
+            </p>
+            <p>
+              Select your framework:
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <option value="SPRING">Spring Boot: Java build with Maven</option>
+                <option value="SPRING_GRADLE">Spring Boot: Java build with Gradle</option>
+              </select>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Application size</b>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Free</b>
+            <p>
+              <i>For development and hobbyist projects</i><br>
+              <i class="bi-check2-circle"></i> Shared compute<br>
+              <i class="bi-check2-circle"></i> Free SSL
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Basic</b>
+            <p>
+              <i>For dedicated dev/test</i><br>
+              <i class="bi-check2-circle"></i> Dedicated compute<br>
+              <i class="bi-check2-circle"></i> Free SSL<br>
+              <i class="bi-check2-circle"></i> Map your custom domain
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Standard</b>
+            <p>
+              <i>Run production workloads</i><br>
+              <i class="bi-check2-circle"></i> Dedicated compute<br>
+              <i class="bi-check2-circle"></i> Free SSL<br>
+              <i class="bi-check2-circle"></i> Map your custom domain<br>
+              <i class="bi-check2-circle"></i> Automatic scale
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Consumption</b>
+            <p>
+              <i>Scale automatically and per-second billing</i><br>
+              <i class="bi-check2-circle"></i> First 1 million requests per month free<br>
+              <i class="bi-check2-circle"></i> Automatic scale<br>
+              <i class="bi-check2-circle"></i> Support custom domain<br>
+              <i class="bi-check2-circle"></i> Free SSL
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Premium</b>
+            <p>
+              <i>For most businesses that want to optimize their functions</i><br>
+              <i class="bi-check2-circle"></i> No cold start<br>
+              <i class="bi-check2-circle"></i> Automatic scale<br>
+              <i class="bi-check2-circle"></i> Support custom domain<br>
+              <i class="bi-check2-circle"></i> Free SSL
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Basic</b>
+            <p>
+              <i>For dedicated dev/test</i><br>
+              <i class="bi-check2-circle"></i> Dedicated compute<br>
+              <i class="bi-check2-circle"></i> Max app instance size 1vCPU, 2GB<br>
+              <i class="bi-check2-circle"></i> Up to 25 instances
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-12 border nubesgen-box">
+            <b>Standard</b>
+            <p>
+              <i>Run production applications</i><br>
+              <i class="bi-check2-circle"></i> Dedicated compute<br>
+              <i class="bi-check2-circle"></i> Max app instance size 4vCPU, 8GB<br>
+              <i class="bi-check2-circle"></i> Up to 500 instances<br>
+              <i class="bi-check2-circle"></i> Custom domains/SSL<br>
+              <i class="bi-check2-circle"></i> VNET integration<br>
+              <i class="bi-check2-circle"></i> Blue/Green deployment
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -254,6 +404,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
