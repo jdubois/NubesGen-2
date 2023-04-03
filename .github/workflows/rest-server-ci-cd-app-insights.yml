@@ -30,7 +30,7 @@ jobs:
     needs: [ test ]
     runs-on: ubuntu-22.04
     env:
-      DOCKER_IMAGE_NAME: 'ghcr.io/microsoft/nubesgen/nubesgen-app-insights'
+      DOCKER_IMAGE_NAME: 'ghcr.io/jdubois/NubesGen-2/nubesgen-app-insights'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -61,7 +61,7 @@ jobs:
     needs: [ test ]
     runs-on: ubuntu-22.04
     env:
-      DOCKER_IMAGE_NAME: 'ghcr.io/microsoft/nubesgen/nubesgen-app-insights-native'
+      DOCKER_IMAGE_NAME: 'ghcr.io/jdubois/NubesGen-2/nubesgen-app-insights-native'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
