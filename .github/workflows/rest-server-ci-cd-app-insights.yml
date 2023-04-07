@@ -101,6 +101,6 @@ jobs:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
             az containerapp update \
-              -n "tmp-nubesgen-app-insights" \
-              -g "rg-tmp-nubesgen-app-insisghts-native" \
-              --image "ghcr.io/jdubois/nubesgen-2/nubesgen-app-insights-native"
+              -n 'tmp-nubesgen-app-insights' \
+              -g 'rg-tmp-nubesgen-app-insisghts-native' \
+              --image ghcr.io/jdubois/nubesgen-2/nubesgen-app-insights-native:${{ github.sha }}
