@@ -87,3 +87,20 @@ jobs:
       - name: Push to GitHub Packages
         run: docker push ${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
         if: ${{ github.repository == 'jdubois/NubesGen-2' && github.event_name != 'pull_request' }}
+  deploy:
+    needs: [test,build_native_docker_image]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy to Container App
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp update \
+              -n "tmp-nubesgen-app-insights" \
+              -g "rg-tmp-nubesgen-app-insisghts-native" \
+              --image "ghcr.io/jdubois/nubesgen-2/nubesgen-app-insights-native"
