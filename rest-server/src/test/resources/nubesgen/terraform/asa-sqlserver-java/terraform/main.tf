@@ -2,11 +2,11 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.32.0"
+      version = "3.49.0"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
-      version = "1.2.22"
+      version = "1.2.24"
     }
   }
 }
@@ -39,7 +39,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 module "application" {
-  source           = "./modules/spring-cloud"
+  source           = "./modules/spring-apps"
   resource_group   = azurerm_resource_group.main.name
   application_name = var.application_name
   environment      = local.environment

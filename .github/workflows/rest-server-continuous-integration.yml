@@ -22,7 +22,7 @@ on:
       - '.github/workflows/rest-server-continuous-integration.yml'
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     defaults:
       run:
         working-directory: ${{ github.workspace }}/rest-server
@@ -32,7 +32,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: 19
+        java-version: 20
         check-latest: false
         cache: 'maven'
     - name: Run tests
@@ -40,7 +40,7 @@ jobs:
   build_java_docker_image:
     name: Build and publish the JVM-based Docker image
     needs: [ test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       DOCKER_IMAGE_NAME: 'ghcr.io/microsoft/nubesgen/nubesgen'
     steps:
@@ -52,14 +52,14 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 19
+          java-version: 20
           check-latest: false
           cache: 'maven'
       - name: Build application with Java
         run: |
           cd rest-server && mvn package  && mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
       - name: Build the JVM-based Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           push: false
           tags: ${{ env.DOCKER_IMAGE_NAME }}:main
@@ -71,7 +71,7 @@ jobs:
   build_native_docker_image:
     name: Build and publish the native (Linux) Docker image
     needs: [ test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       DOCKER_IMAGE_NAME: 'ghcr.io/microsoft/nubesgen/nubesgen-native'
     steps:
@@ -81,15 +81,16 @@ jobs:
         run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - uses: graalvm/setup-graalvm@v1
         with:
-          version: 'latest'
-          java-version: '19'
+          version: '22.3.1'
+          java-version: '17'
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
       - name: Build application with GraalVM
         run: |
           cd rest-server && mvn -Pnative native:compile
       - name: Build the native (GraalVM) Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           push: false
           tags: ${{ env.DOCKER_IMAGE_NAME }}:main

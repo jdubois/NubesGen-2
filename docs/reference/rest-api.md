@@ -1,5 +1,9 @@
 # NubesGen REST API reference
 
+## Generating a project using Swagger
+
+The NubesGen API is automatically documented using Swagger. The production version is available at [https://nubesgen.com/swagger-ui/index.html](https://nubesgen.com/swagger-ui/index.html).
+
 ## Generating a project using cURL
 
 To automate your workflow, you don't need to use a Web interface! Use cURL to directly download and use your NubesGen configuration.
@@ -57,14 +61,14 @@ Then your application name will be something similar to `demo-1234-5678-9012`.
 
 ### Main parameters
 
-| Name  | Description  | Values  | POST example | GET example  |
-|---|---|---|---|---|
+| Name  | Description  | Values                                                                                    | POST example | GET example  |
+|---|---|-------------------------------------------------------------------------------------------|---|---|
 | runtime |  The language and framework used to run the application | DOCKER (default), DOCKER_SPRING, JAVA, JAVA_GRADLE, SPRING, SPRING_GRADLE, DOTNET, NODEJS | `https://nubesgen.com/demo.tgz -d '{ "runtime": "JAVA"' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?runtime=java`  |
-| application  | Type of application: Web app or serverless  | APP_SERVICE (default), FUNCTION | `https://nubesgen.com/demo.tgz -d '{ "application": { "type": "FUNCTION", "tier": "CONSUMPTION"}}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?application=function`  |
-| region  |  Azure Region where the resource will be located | Run `az account list-locations` | `https://nubesgen.com/demo.tgz -d '{ "region": "westeurope"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?region=westeurope`  |
-| database  |  The database | NONE (default), SQL_SERVER, MYSQL, POSTGRESQL  | `https://nubesgen.com/demo.tgz -d '{ "database": { "type": "MYSQL", "tier": "BASIC"}}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?database=mysql`  |
-| network  |  The network security | PUBLIC (default), VIRTUAL_NETWORK | `https://nubesgen.com/demo.tgz -d '{ "gitops": "true"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?network=VIRTUAL_NETWORK`  |
-| gitops  |  If [GitOps](/gitops/gitops-quick-start/) is enabled | FALSE (default), TRUE  | `https://nubesgen.com/demo.tgz -d '{ "gitops": "true"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?gitops=true`  |
+| application  | Type of application: Web app or serverless  | APP_SERVICE (default), FUNCTION, CONTAINER_APPS, SPRING_APPS                              | `https://nubesgen.com/demo.tgz -d '{ "application": { "type": "FUNCTION", "tier": "CONSUMPTION"}}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?application=function`  |
+| region  |  Azure Region where the resource will be located | Run `az account list-locations`                                                           | `https://nubesgen.com/demo.tgz -d '{ "region": "westeurope"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?region=westeurope`  |
+| database  |  The database | NONE (default), SQL_SERVER, MYSQL, POSTGRESQL                                             | `https://nubesgen.com/demo.tgz -d '{ "database": { "type": "MYSQL", "tier": "BASIC"}}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?database=mysql`  |
+| network  |  The network security | PUBLIC (default), VIRTUAL_NETWORK                                                         | `https://nubesgen.com/demo.tgz -d '{ "gitops": "true"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?network=VIRTUAL_NETWORK`  |
+| gitops  |  If [GitOps](/gitops/gitops-quick-start/) is enabled | FALSE (default), TRUE                                                                     | `https://nubesgen.com/demo.tgz -d '{ "gitops": "true"}' -H "Content-Type: application/json"` | `https://nubesgen.com/demo.tgz?gitops=true`  |
 
 _In a GET request, parameters can be in uppercase or lowercase, for example `database=MYSQL`or `database=mysql`_
 
@@ -79,13 +83,15 @@ Application types and databases have different tiers.
 
 We provide the following tiers per resource type:
 
-| Resource type  | Available tiers  | Example |
-|---|---|---|
-| APP_SERVICE | FREE, BASIC, STANDARD | `https://nubesgen.com/demo.tgz?application=app_service.standard` |
-| FUNCTION | CONSUMPTION, PREMIUM | `https://nubesgen.com/demo.tgz?application=function.premium` |
-| SQL_SERVER | SERVERLESS, GENERAL_PURPOSE | `https://nubesgen.com/demo.tgz?database=sql_server.general_purpose` |
-| MYSQL | BASIC, GENERAL_PURPOSE | `https://nubesgen.com/demo.tgz?database=mysql.general_purpose` |
-| POSTGRESQL |BASIC, GENERAL_PURPOSE | `https://nubesgen.com/demo.tgz?database=postgresql.general_purpose` |
+| Resource type  | Available tiers             | Example                                                             |
+|----------------|-----------------------------|---------------------------------------------------------------------|
+| APP_SERVICE    | FREE, BASIC, STANDARD       | `https://nubesgen.com/demo.tgz?application=app_service.standard`    |
+| FUNCTION       | CONSUMPTION, PREMIUM        | `https://nubesgen.com/demo.tgz?application=function.premium`        |
+| CONTAINER_APPS | CONSUMPTION                 | `https://nubesgen.com/demo.tgz?application=container_apps`          |
+| SPRING_APPS    | BASIC, STANDARD             | `https://nubesgen.com/demo.tgz?application=spring_apps.standard`    |
+| SQL_SERVER     | SERVERLESS, GENERAL_PURPOSE | `https://nubesgen.com/demo.tgz?database=sql_server.general_purpose` |
+| MYSQL          | BASIC, GENERAL_PURPOSE      | `https://nubesgen.com/demo.tgz?database=mysql.general_purpose`      |
+| POSTGRESQL     | BASIC, GENERAL_PURPOSE      | `https://nubesgen.com/demo.tgz?database=postgresql.general_purpose` |
 
 ### Add-ons
 
